@@ -1,3 +1,3 @@
-## Sammi NextJS Tutorial
+## NextJS Tutorial
 
 # Source code
