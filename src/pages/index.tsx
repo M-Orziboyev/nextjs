@@ -1,12 +1,11 @@
-import { Button } from '@mui/material'
-import Head from 'next/head'
 import React from 'react'
 import Layout from '../components/layout/layout';
+import {Hero} from 'src/components'
 
 function IndexPage() {
     return (
         <Layout>
-            <Button>Click</Button>
+            <Hero />
         </Layout>
     )
 }
