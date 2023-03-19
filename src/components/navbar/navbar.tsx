@@ -1,9 +1,22 @@
-import { AppBar, Box, Button, Divider, Drawer, IconButton, ListItem, ListItemButton, ListItemText, Toolbar, Typography } from '@mui/material'
-import List from '@mui/material/List';
-import CloseIcon from '@mui/icons-material/Close';
-import MenuIcon from '@mui/icons-material/Menu';
-import React from 'react'
-import { navItems } from 'src/config/constants';
+import {
+    AppBar,
+    Box,
+    Button,
+    Divider,
+    Drawer,
+    IconButton,
+    ListItem,
+    ListItemButton,
+    ListItemText,
+    Toolbar,
+    Typography,
+} from "@mui/material";
+import List from "@mui/material/List";
+import CloseIcon from "@mui/icons-material/Close";
+import MenuIcon from "@mui/icons-material/Menu";
+import React from "react";
+import { navItems } from "src/config/constants";
+import AppleIcon from "@mui/icons-material/Apple";
 
 interface Props {
     window?: () => Window;
@@ -15,20 +28,29 @@ function Navbar({ window }: Props) {
         setMobileOpen((prevState) => !prevState);
     };
 
-    const container = window !== undefined ? () => window().document.body : undefined;
+    const container =
+        window !== undefined ? () => window().document.body : undefined;
     const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingX: '20px'}}>
-                <Typography variant="h6" sx={{ my: 2 }}>
-                    MUI
-                </Typography>
+        <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    paddingX: "20px",
+                }}
+            >
+                <Box sx={{ my: 2, display: "flex", alignItems: "center", gap: "5px" }}>
+                    <AppleIcon />
+                    <Typography variant="h6">MO</Typography>
+                </Box>
                 <CloseIcon />
             </Box>
             <Divider />
             <List>
                 {navItems.map((item) => (
                     <ListItem key={item.route} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
+                        <ListItemButton sx={{ textAlign: "center" }}>
                             <ListItemText primary={item.label} />
                         </ListItemButton>
                     </ListItem>
@@ -38,7 +60,7 @@ function Navbar({ window }: Props) {
     );
 
     return (
-        <Box height={'10vh'} sx={{ display: 'flex' }}>
+        <Box height={"10vh"} sx={{ display: "flex" }}>
             <AppBar component="nav">
                 <Toolbar>
                     <IconButton
@@ -46,20 +68,17 @@ function Navbar({ window }: Props) {
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
+                        sx={{ mr: 2, display: { sm: "none" } }}
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                    >
-                        MUI
-                    </Typography>
-                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                    <Box sx={{ my: 2, alignItems: 'center', gap: '5px', flexGrow: 1, display: { xs: "none", sm: "flex" } }}>
+                        <AppleIcon />
+                        <Typography variant="h6" component="div">MO</Typography>
+                    </Box>
+                    <Box sx={{ display: { xs: "none", sm: "block" } }}>
                         {navItems.map((item) => (
-                            <Button key={item.route} sx={{ color: '#fff' }}>
+                            <Button key={item.route} sx={{ color: "#fff" }}>
                                 {item.label}
                             </Button>
                         ))}
@@ -76,15 +95,15 @@ function Navbar({ window }: Props) {
                         keepMounted: true,
                     }}
                     sx={{
-                        display: { xs: 'block', sm: 'none' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '100%' },
+                        display: { xs: "block", sm: "none" },
+                        "& .MuiDrawer-paper": { boxSizing: "border-box", width: "100%" },
                     }}
                 >
                     {drawer}
                 </Drawer>
             </Box>
         </Box>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;
